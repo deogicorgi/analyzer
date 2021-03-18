@@ -35,14 +35,14 @@ public class Lotto {
     /**
      * 당첨금 정보
      */
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @OrderBy("ranking asc ")
     private Set<WinningAmount> winningAmounts;
 
     /**
      * 당첨 번호 정보
      */
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @OrderBy("sequence asc ")
     private Set<WinningNumber> winningNumbers;
 
