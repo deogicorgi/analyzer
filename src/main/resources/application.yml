@@ -4,11 +4,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.0.7:3306/entertainment?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://deogicorgi.homeserver:23306/lotto?serverTimezone=UTC&characterEncoding=UTF-8
     username: deogicorgi
     password: deogicorgi1234
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
     properties:
       hibernate :
@@ -20,3 +20,9 @@ spring:
         # update : SessionFactory가 올라갈 때 Object를 검사하여 테이블을 alter 시킨다. 데이터는 유지됨.
         # validate : update처럼 Object를 검사하지만, 스키마는 아무것도 건드리지 않고, Object와 스키마의 정보가 다르다면 에러를 발생시킨다.
 
+logging:
+  level:
+    org:
+      springframework:
+        orm:
+          jpa: DEBUG

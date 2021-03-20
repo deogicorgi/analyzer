@@ -6,11 +6,13 @@ import com.deogicorgi.lotto.jpa.repository.LottoJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+/**
+ * Dedicated service classes for JPA processes.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -18,6 +20,31 @@ public class LottoJpaService extends JpaService {
 
     private final LottoJpaRepository lottoJpaRepository;
 
+    // ==================================================
+    // ================      Create      ================
+    // ==================================================
+
+    /**
+     * Save lotto.
+     *
+     * @param lottoDto Lotto information for save.
+     * @return Saved Lotto entity.
+     */
+    public Lotto save(LottoDto lottoDto) {
+        Lotto lotto = getMapper().map(lottoDto, Lotto.class);
+        return lottoJpaRepository.save(lotto);
+    }
+
+    // ==================================================
+    // ================      Select      ================
+    // ==================================================
+
+    /**
+     * Find by PK.
+     *
+     * @param id Pk
+     * @return Lotto entity
+     */
     public Lotto findById(Long id) {
         Optional<Lotto> lottoOptional = lottoJpaRepository.findById(id);
 
@@ -29,6 +56,12 @@ public class LottoJpaService extends JpaService {
         }
     }
 
+    /**
+     * Find by Round.
+     *
+     * @param round Round number.
+     * @return Lotto entity
+     */
     public Lotto findByRound(Long round) {
         Optional<Lotto> lottoOptional = lottoJpaRepository.findByRound(round);
 
@@ -40,13 +73,32 @@ public class LottoJpaService extends JpaService {
         }
     }
 
-    public List<Lotto> findAll() {
+    /**
+     * Find by Max round.
+     *
+     * @return Lotto entity
+     */
+    public Lotto findFirstByRoundAsc() {
+        Optional<Lotto> lottoOptional = lottoJpaRepository.findFirstByOrderByRoundAsc();
+        return lottoOptional.orElse(null);
+    }
+
+    /**
+     * Find all.
+     *
+     * @return Lotto entity list
+     */
+    public Set<Lotto> findAll() {
         return lottoJpaRepository.findAllByOrderByRoundAsc();
     }
 
-    @Transactional
-    public Lotto save(LottoDto lottoDto) {
-        Lotto lotto = getMapper().map(lottoDto, Lotto.class);
-        return lottoJpaRepository.save(lotto);
-    }
+    // ==================================================
+    // ================      Update      ================
+    // ==================================================
+    // TODO: 2021/03/20 Update methods. 
+
+    // ==================================================
+    // ================      Delete      ================
+    // ==================================================
+    // TODO: 2021/03/20 Delete methods.
 }

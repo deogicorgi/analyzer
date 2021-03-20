@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
+import java.util.Set;
 
+/**
+ * Lotto Business Process Service Class.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class LottoService {
+
     private final LottoJpaService lottoJpaService;
 
-
+    @Transactional
     public Lotto save(LottoDto lottoDto) {
         return lottoJpaService.save(lottoDto);
     }
@@ -30,7 +34,7 @@ public class LottoService {
         return lottoJpaService.findById(id);
     }
 
-    public List<Lotto> findAll() {
+    public Set<Lotto> findAll() {
         return lottoJpaService.findAll();
     }
 }
