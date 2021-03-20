@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -39,7 +39,7 @@ public class LottoController extends BaseController {
     }
 
     @GetMapping
-    public List<Lotto> findAll() {
+    public Set<Lotto> findAll() {
         return lottoService.findAll();
     }
 }
