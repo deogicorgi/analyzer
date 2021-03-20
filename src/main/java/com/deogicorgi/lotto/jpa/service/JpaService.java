@@ -10,6 +10,4 @@ public abstract class JpaService {
     public ModelMapper getMapper() {
         return SpringContext.getBean(ModelMapper.class);
     }
-
-
 }
