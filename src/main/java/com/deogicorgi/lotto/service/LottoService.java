@@ -6,6 +6,7 @@ import com.deogicorgi.lotto.jpa.service.LottoJpaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 public class LottoService {
     private final LottoJpaService lottoJpaService;
 
-
+    @Transactional
     public Lotto save(LottoDto lottoDto) {
         return lottoJpaService.save(lottoDto);
     }

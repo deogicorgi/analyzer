@@ -44,11 +44,8 @@ public class LottoJpaService extends JpaService {
         return lottoJpaRepository.findAllByOrderByRoundAsc();
     }
 
-    @Transactional
     public Lotto save(LottoDto lottoDto) {
         Lotto lotto = getMapper().map(lottoDto, Lotto.class);
-        lottoJpaRepository.save(lotto);
-        lottoJpaRepository.save(lotto);
         return lottoJpaRepository.save(lotto);
     }
 }
