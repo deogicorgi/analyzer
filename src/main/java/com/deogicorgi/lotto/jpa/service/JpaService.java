@@ -6,10 +6,8 @@ import org.modelmapper.ModelMapper;
 
 @RequiredArgsConstructor
 public abstract class JpaService {
-
+    
     public ModelMapper getMapper() {
         return SpringContext.getBean(ModelMapper.class);
     }
-
-
 }
