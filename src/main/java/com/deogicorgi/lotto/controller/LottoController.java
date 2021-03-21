@@ -35,6 +35,15 @@ public class LottoController extends BaseController {
         return lottoService.save(lottoDto);
     }
 
+    @PutMapping
+    @ApiOperation(value = "로또 정보 수정", notes = "로또 정보 수정")
+    public Lotto update(@RequestBody @Valid LottoDto lottoDto, BindingResult result) {
+        if (result.hasErrors()) {
+            error(result, lottoDto);
+        }
+        return lottoService.save(lottoDto);
+    }
+
     @GetMapping("/round/{round}")
     @ApiOperation(value = "회차 기준 로또 한건 조회", notes = "로또 정보 조회")
     public Lotto findByRound(@PathVariable Integer round) {

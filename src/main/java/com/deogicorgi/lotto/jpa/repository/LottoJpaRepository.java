@@ -2,6 +2,7 @@ package com.deogicorgi.lotto.jpa.repository;
 
 import com.deogicorgi.lotto.jpa.model.entity.Lotto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
@@ -17,6 +18,11 @@ public interface LottoJpaRepository extends JpaRepository<Lotto, Long> {
     // ==================================================
 
     // By Round
+    @Query("select a from Lotto a join fetch a.winningAmounts s join fetch a.winningNumbers where a.id = :id")
+    Optional<Lotto> findById(Long id);
+
+    // By Round
+    @Query("select a from Lotto a join fetch a.winningAmounts s join fetch a.winningNumbers where a.round = :round")
     Optional<Lotto> findByRound(Integer round);
 
     // By Max round
@@ -28,5 +34,6 @@ public interface LottoJpaRepository extends JpaRepository<Lotto, Long> {
     // ==================================================
 
     // By Round Asc
+    @Query("select a from Lotto a join fetch a.winningAmounts s join fetch a.winningNumbers order by a.round asc")
     Set<Lotto> findAllByOrderByRoundAsc();
 }

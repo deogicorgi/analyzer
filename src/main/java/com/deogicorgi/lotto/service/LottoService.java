@@ -67,7 +67,6 @@ public class LottoService {
                     Row row = worksheet.getRow(i);
 
                     lottoDto.setRound((int) row.getCell(0).getNumericCellValue());
-                    System.out.println(row.getCell(1).getStringCellValue());
                     lottoDto.setDrawDate(LocalDate.parse(row.getCell(1).getStringCellValue().replaceAll("\\.", "-"), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
                     WinningAmountDto winningAmountDto = new WinningAmountDto();
