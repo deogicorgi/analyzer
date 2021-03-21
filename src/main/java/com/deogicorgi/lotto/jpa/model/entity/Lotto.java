@@ -24,7 +24,7 @@ public class Lotto {
      * 회차
      */
     @Column(nullable = false)
-    private Long round;
+    private Integer round;
 
     /**
      * 추첨 일자

@@ -3,6 +3,7 @@ package com.deogicorgi.lotto.jpa.repository;
 import com.deogicorgi.lotto.jpa.model.entity.Lotto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public interface LottoJpaRepository extends JpaRepository<Lotto, Long> {
     // ==================================================
 
     // By Round
-    Optional<Lotto> findByRound(Long round);
+    Optional<Lotto> findByRound(Integer round);
 
     // By Max round
     Optional<Lotto> findFirstByOrderByRoundAsc();
