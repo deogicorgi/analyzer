@@ -1,7 +1,7 @@
 package com.deogicorgi.lotto.controller;
 
-import com.deogicorgi.lotto.jpa.model.dto.LottoDto;
-import com.deogicorgi.lotto.jpa.model.entity.Lotto;
+import com.deogicorgi.lotto.model.dto.LottoDto;
+import com.deogicorgi.lotto.jpa.entity.Lotto;
 import com.deogicorgi.lotto.service.LottoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,9 +35,29 @@ public class LottoController extends BaseController {
         return lottoService.save(lottoDto);
     }
 
-    @PutMapping
-    @ApiOperation(value = "로또 정보 수정", notes = "로또 정보 수정")
-    public Lotto update(@RequestBody @Valid LottoDto lottoDto, BindingResult result) {
+    @PutMapping("/{id}")
+    @ApiOperation(value = "로또 정보 수정", notes = "로또 정보 수정 (Full)")
+    public Lotto fullUpdate(@RequestBody @Valid LottoDto lottoDto, @PathVariable Long id, BindingResult result) {
+        if (result.hasErrors()) {
+            error(result, lottoDto);
+        }
+        lottoDto.setId(id);
+        return lottoService.save(lottoDto);
+    }
+
+    @PatchMapping("/{id}")
+    @ApiOperation(value = "로또 정보 수정", notes = "로또 정보 수정 (Partial)")
+    public Lotto partialUpdate(@RequestBody @Valid LottoDto lottoDto, @PathVariable Long id, BindingResult result) {
+        if (result.hasErrors()) {
+            error(result, lottoDto);
+        }
+        lottoDto.setId(id);
+        return lottoService.partialUpdate(lottoDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "로또 정보 삭제", notes = "로또 정보 삭제")
+    public Lotto delete(@RequestBody @Valid LottoDto lottoDto, BindingResult result) {
         if (result.hasErrors()) {
             error(result, lottoDto);
         }

@@ -1,4 +1,4 @@
-package com.deogicorgi.lotto.jpa.model.entity;
+package com.deogicorgi.lotto.jpa.entity;
 
 import lombok.Data;
 

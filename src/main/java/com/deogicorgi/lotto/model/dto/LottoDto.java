@@ -1,4 +1,4 @@
-package com.deogicorgi.lotto.jpa.model.dto;
+package com.deogicorgi.lotto.model.dto;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

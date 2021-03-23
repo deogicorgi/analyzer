@@ -1,10 +1,9 @@
 package com.deogicorgi.lotto.jpa.repository;
 
-import com.deogicorgi.lotto.jpa.model.entity.Lotto;
+import com.deogicorgi.lotto.jpa.entity.Lotto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
 import java.util.Set;
 

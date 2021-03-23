@@ -1,6 +1,7 @@
-package com.deogicorgi.lotto.jpa.model.entity;
+package com.deogicorgi.lotto.jpa.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Data
+@EqualsAndHashCode(of = "number")
 public class WinningNumber {
 
     /**

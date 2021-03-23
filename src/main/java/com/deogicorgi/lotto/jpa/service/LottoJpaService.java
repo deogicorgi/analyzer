@@ -1,7 +1,7 @@
 package com.deogicorgi.lotto.jpa.service;
 
-import com.deogicorgi.lotto.jpa.model.dto.LottoDto;
-import com.deogicorgi.lotto.jpa.model.entity.Lotto;
+import com.deogicorgi.lotto.model.dto.LottoDto;
+import com.deogicorgi.lotto.jpa.entity.Lotto;
 import com.deogicorgi.lotto.jpa.repository.LottoJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -109,8 +109,10 @@ public class LottoJpaService extends JpaService {
     // ==================================================
     // ================      Update      ================
     // ==================================================
-    // TODO: 2021/03/20 Update methods. 
-
+    public Lotto partialUpdate(LottoDto lottoDto) {
+        Lotto lotto = getMapper().map(lottoDto, Lotto.class);
+        return lottoJpaRepository.save(lotto);
+    }
     // ==================================================
     // ================      Delete      ================
     // ==================================================

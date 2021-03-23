@@ -1,9 +1,9 @@
 package com.deogicorgi.lotto.service;
 
-import com.deogicorgi.lotto.jpa.model.dto.LottoDto;
-import com.deogicorgi.lotto.jpa.model.dto.WinningAmountDto;
-import com.deogicorgi.lotto.jpa.model.dto.WinningNumberDto;
-import com.deogicorgi.lotto.jpa.model.entity.Lotto;
+import com.deogicorgi.lotto.model.dto.LottoDto;
+import com.deogicorgi.lotto.model.dto.WinningAmountDto;
+import com.deogicorgi.lotto.model.dto.WinningNumberDto;
+import com.deogicorgi.lotto.jpa.entity.Lotto;
 import com.deogicorgi.lotto.jpa.service.LottoJpaService;
 import com.deogicorgi.lotto.value.ExcelExtension;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +39,13 @@ public class LottoService {
     public Lotto save(LottoDto lottoDto) {
         return lottoJpaService.save(lottoDto);
     }
+
+    @Transactional
+    public Lotto partialUpdate(LottoDto lottoDto) {
+
+        return lottoJpaService.partialUpdate(lottoDto);
+    }
+
 
     public List<Lotto> upload(MultipartFile file) throws IOException {
 
