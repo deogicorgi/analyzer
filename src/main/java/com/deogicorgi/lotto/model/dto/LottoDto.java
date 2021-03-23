@@ -1,13 +1,11 @@
-package com.deogicorgi.lotto.jpa.model.dto;
+package com.deogicorgi.lotto.model.dto;
 
-import com.deogicorgi.lotto.jpa.model.entity.WinningAmount;
-import com.deogicorgi.lotto.jpa.model.entity.WinningNumber;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -19,7 +17,7 @@ public class LottoDto {
      * 회차
      */
     @NotNull
-    private Long round;
+    private Integer round;
 
     /**
      * 추첨 일자
@@ -31,10 +29,10 @@ public class LottoDto {
     /**
      * 당첨금 정보
      */
-    private Set<WinningAmount> winningAmounts;
+    private Set<WinningAmountDto> winningAmounts = new HashSet<>();
 
     /**
      * 당첨 번호 정보
      */
-    private Set<WinningNumber> winningNumbers;
+    private Set<WinningNumberDto> winningNumbers = new HashSet<>();
 }

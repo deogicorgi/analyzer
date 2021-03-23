@@ -1,14 +1,17 @@
 package com.deogicorgi.lotto.jpa.service;
 
-import com.deogicorgi.lotto.jpa.model.dto.LottoDto;
-import com.deogicorgi.lotto.jpa.model.entity.Lotto;
+import com.deogicorgi.lotto.model.dto.LottoDto;
+import com.deogicorgi.lotto.jpa.entity.Lotto;
 import com.deogicorgi.lotto.jpa.repository.LottoJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Dedicated service classes for JPA processes.
@@ -33,6 +36,17 @@ public class LottoJpaService extends JpaService {
     public Lotto save(LottoDto lottoDto) {
         Lotto lotto = getMapper().map(lottoDto, Lotto.class);
         return lottoJpaRepository.save(lotto);
+    }
+
+    /**
+     * Save multiple lotto.
+     *
+     * @param lottoDtoSet Lotto information Set for save.
+     * @return Saved Lotto entities.
+     */
+    public List<Lotto> saveAll(Set<LottoDto> lottoDtoSet) {
+        List<Lotto> collect = lottoDtoSet.stream().map(lottoDto -> getMapper().map(lottoDto, Lotto.class)).sorted(Comparator.comparing(Lotto::getRound)).collect(Collectors.toList());
+        return lottoJpaRepository.saveAll(collect);
     }
 
     // ==================================================
@@ -62,7 +76,7 @@ public class LottoJpaService extends JpaService {
      * @param round Round number.
      * @return Lotto entity
      */
-    public Lotto findByRound(Long round) {
+    public Lotto findByRound(Integer round) {
         Optional<Lotto> lottoOptional = lottoJpaRepository.findByRound(round);
 
         if (lottoOptional.isPresent()) {
@@ -95,8 +109,10 @@ public class LottoJpaService extends JpaService {
     // ==================================================
     // ================      Update      ================
     // ==================================================
-    // TODO: 2021/03/20 Update methods. 
-
+    public Lotto partialUpdate(LottoDto lottoDto) {
+        Lotto lotto = getMapper().map(lottoDto, Lotto.class);
+        return lottoJpaRepository.save(lotto);
+    }
     // ==================================================
     // ================      Delete      ================
     // ==================================================

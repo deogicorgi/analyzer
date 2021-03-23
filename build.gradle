@@ -25,6 +25,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.modelmapper:modelmapper:2.3.0'
 
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
+
+    implementation "io.springfox:springfox-swagger-ui:2.9.2"
+    implementation "io.springfox:springfox-swagger2:2.9.2"
 
     compileOnly 'org.projectlombok:lombok'
 

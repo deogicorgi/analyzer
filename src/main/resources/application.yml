@@ -10,9 +10,9 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
-    properties:
-      hibernate :
-        format_sql: true
+#    properties:
+#      hibernate :
+#        format_sql: true
     hibernate:
       ddl-auto: create
         # create : SessionFactory가 올라갈 때 테이블을 지우고 새로 만듬. (sql문을 별도로 만들어서 데이터를 넣는 용도로도 사용가능하다.)
@@ -25,4 +25,4 @@ logging:
     org:
       springframework:
         orm:
-          jpa: DEBUG
+          jpa: info

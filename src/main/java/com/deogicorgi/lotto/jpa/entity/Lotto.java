@@ -1,4 +1,4 @@
-package com.deogicorgi.lotto.jpa.model.entity;
+package com.deogicorgi.lotto.jpa.entity;
 
 import lombok.Data;
 
@@ -23,19 +23,20 @@ public class Lotto {
     /**
      * 회차
      */
-    @Column(nullable = false)
-    private Long round;
+    @Column(nullable = false, unique = true, length = 5)
+    private Integer round;
 
     /**
      * 추첨 일자
      */
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 10)
     private LocalDate drawDate;
 
     /**
      * 당첨금 정보
      */
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lotto_id")
     @OrderBy("ranking asc ")
     private Set<WinningAmount> winningAmounts;
 
@@ -44,6 +45,7 @@ public class Lotto {
      */
     @OneToMany(cascade = CascadeType.ALL)
     @OrderBy("sequence asc ")
+    @JoinColumn(name = "lotto_id")
     private Set<WinningNumber> winningNumbers;
 
 }
